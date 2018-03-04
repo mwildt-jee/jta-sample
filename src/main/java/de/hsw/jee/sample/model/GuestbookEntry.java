@@ -11,16 +11,23 @@ import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
 public class GuestbookEntry {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	@Column(length=2048, nullable=false)
 	private String message;
 	
+	@Column(nullable=false)
 	private String author;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 
+	@PrePersist
 	public void prePersist() {
 		this.created = new Date();
 	}

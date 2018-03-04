@@ -4,16 +4,16 @@ package de.hsw.jee.sample.service;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 
 import de.hsw.jee.sample.model.GuestbookEntry;
 import de.hsw.jee.sample.repository.GuestbookRepository;
-import de.hsw.jee.sample.repository.Mock;
 
 @ApplicationScoped
 public class GuestbookService {
 
-	@Inject @Mock  
+	@Inject @Default
 	private GuestbookRepository guestbookRepository;
 
 	public List<GuestbookEntry> findAll() {
