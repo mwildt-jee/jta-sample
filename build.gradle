@@ -24,6 +24,8 @@ dependencies {
 	providedCompile 'javax.servlet:javax.servlet-api:3.0.1' 
 	
   	providedCompile 'org.eclipse.persistence:javax.persistence:2.1.0'
+  	
+  	providedCompile 'javax.transaction:javax.transaction-api:1.2'
   	  	
 	compile 'com.h2database:h2:1.4.196'
 	
