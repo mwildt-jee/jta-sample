@@ -1,7 +1,9 @@
+package de.hsw.jee.sample.repository;
 
-package de.hsw.jee.sample.model;
-
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -9,8 +11,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import de.hsw.jee.sample.model.GuestbookEntry;
+
 @ApplicationScoped
-public class JPAGuestbookService implements GuestbookService {
+public class GuestbookRepositoryJPA implements GuestbookRepository {
 
 	/*
 	 *  TODO: Der entityManager muss irgendwie erzeugt werden
@@ -41,7 +45,4 @@ public class JPAGuestbookService implements GuestbookService {
 		this.entityManager.persist(entry);
 		return entry;
 	}
-
-	
-	
 }

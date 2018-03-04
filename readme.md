@@ -6,3 +6,8 @@ Folgende Stragegieen werden implementiert:
 
 1. Application-Managed Persistence
 2. Container-Managed Persistence
+
+
+## Aufgabe
+
+Erstellen Sie eine Implementierung des GuestbookRepository, welches unter verwendung con JPA die Datenbank zugreift.

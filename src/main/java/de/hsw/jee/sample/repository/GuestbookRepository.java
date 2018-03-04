@@ -1,9 +1,11 @@
-package de.hsw.jee.sample.model;
+package de.hsw.jee.sample.repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface GuestbookService {
+import de.hsw.jee.sample.model.GuestbookEntry;
+
+public interface GuestbookRepository {
 
 	List<GuestbookEntry> findAll();
 	
