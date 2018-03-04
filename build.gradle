@@ -12,7 +12,6 @@ eclipse {
     }
 }
 
-
 repositories {
 	mavenCentral()
 }
@@ -22,8 +21,5 @@ dependencies {
 	compile 'org.slf4j:slf4j-log4j12:1.7.25'
 
 	providedCompile 'javax.enterprise:cdi-api:1.2'	
-	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
-  	providedCompile 'org.eclipse.persistence:javax.persistence:2.1.0'
-  	  	
-	compile 'com.h2database:h2:1.4.196'
+	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'  	
 }
