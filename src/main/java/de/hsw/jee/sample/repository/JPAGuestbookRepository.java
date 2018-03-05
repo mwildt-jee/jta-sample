@@ -5,10 +5,13 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+import javax.transaction.UserTransaction;
 
 import de.hsw.jee.sample.model.GuestbookEntry;
 
@@ -16,9 +19,10 @@ import de.hsw.jee.sample.model.GuestbookEntry;
 @Default
 public class JPAGuestbookRepository implements GuestbookRepository {
 
-	
 	@PersistenceContext(unitName="sample")
 	private EntityManager entityManager;
+	
+	@Inject private UserTransaction userTransaction;
 	
 	public List<GuestbookEntry> findAll() {
 		return entityManager.createQuery("select e from GuestbookEntry e", GuestbookEntry.class).getResultList();
@@ -34,9 +38,9 @@ public class JPAGuestbookRepository implements GuestbookRepository {
 		}
 	}
 	
+	@Transactional
 	public GuestbookEntry save(GuestbookEntry entry) {
 		entityManager.persist(entry);
 		return entry;
-				
 	}
 }
