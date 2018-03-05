@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import javax.transaction.UserTransaction;
 
 import de.hsw.jee.sample.model.GuestbookEntry;
@@ -38,9 +37,19 @@ public class JPAGuestbookRepository implements GuestbookRepository {
 		}
 	}
 	
-	@Transactional
 	public GuestbookEntry save(GuestbookEntry entry) {
-		entityManager.persist(entry);
+		try {
+			userTransaction.begin();
+			entityManager.persist(entry);
+			userTransaction.commit();
+		} catch (Exception e) {
+			try {
+				userTransaction.rollback();
+				throw new RuntimeException("FEHLER BEIM SPEICHERN");
+			} catch (Exception e1) {
+				throw new RuntimeException("FEHLER BEIM ROLLBACK");
+			}
+		}		
 		return entry;
 	}
 }
