@@ -5,15 +5,15 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Default;
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import de.hsw.jee.sample.model.GuestbookEntry;
-import de.hsw.jee.sample.transaction.WithTransaction;
 
+@Transactional
 @ApplicationScoped 
 @Default
 public class JPAGuestbookRepository implements GuestbookRepository {
@@ -34,8 +34,7 @@ public class JPAGuestbookRepository implements GuestbookRepository {
 			return Optional.empty();
 		}
 	}
-	
-	@WithTransaction
+
 	public GuestbookEntry save(GuestbookEntry entry) {		
 		entityManager.persist(entry);
 		return entry;
