@@ -2,16 +2,29 @@ package de.hsw.jee.sample.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class GuestbookEntry {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	private String message;
 	
 	private String author;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 
+	@PrePersist
 	public void prePersist() {
 		this.created = new Date();
 	}
